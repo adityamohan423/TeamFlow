@@ -1,7 +1,6 @@
 import { WorkSpace } from "../models/WorkSpace.model.js";
 import asyncHandler from "../middleware/asyncHandler.js";
 import { set } from "mongoose";
-import { data } from "react-router-dom";
 
 // createWorkspace
 const createWorkspace = asyncHandler(async (req, res) => {
