@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import "dotenv/config";
 import userRoute from "./routes/user.routes.js";
 import loginRoute from "./routes/login.routes.js";
@@ -11,6 +12,9 @@ import commentRoute from "./routes/comment.routes.js";
 import dashboardRoute from "./routes/dashboard.routes.js";
 
 const app = express();
+
+app.use(cors());
+
 const PORT = process.env.PORT;
 await connectDB();
 
