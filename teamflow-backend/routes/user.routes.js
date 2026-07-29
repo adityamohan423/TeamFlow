@@ -9,7 +9,7 @@ import {
   deleteUser,
 } from "../controllers/user.controller.js";
 import { authHandler } from "../middleware/authHandler.js";
-import { adminOnly } from "../middleware/adminonly.js";
+import { adminOnly } from "../middleware/adminOnly.js";
 
 const router = express.Router();
 
