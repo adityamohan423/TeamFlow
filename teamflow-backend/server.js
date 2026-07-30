@@ -19,6 +19,7 @@ const PORT = process.env.PORT;
 await connectDB();
 
 app.use(express.json());
+app.use(express.text());
 
 app.use("/users", userRoute);
 app.use("/login", loginRoute);
@@ -27,6 +28,14 @@ app.use("/projects", projectRoute);
 app.use("/tasks", taskRoute);
 app.use("/comments", commentRoute);
 app.use("/dashboard", dashboardRoute);
+app.post("/test", (req, res) => {
+  const data = req.body;
+  res.json({
+    message: "You are Sexy",
+    data: data,
+  });
+});
+
 app.use(golbalErrorHandler);
 
 app.listen(PORT, () => {

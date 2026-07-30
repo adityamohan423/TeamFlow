@@ -3,7 +3,7 @@ import { hashPassword } from "../utils/bcryptHashing.js";
 
 //create
 const createUser = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, passCode } = req.body;
 
   if (!name || !email || !password) {
     res.status(400);
@@ -20,10 +20,16 @@ const createUser = async (req, res) => {
   //hashPassword returns a promise so need await to resolve it.
   const hashedPassword = await hashPassword(password);
 
+  const user = "user";
+  if (passCode && passCode === process.env.PASS_CODE) {
+    user = "admin";
+  }
+
   const newUser = await User.create({
     name: name,
     email: email,
     password: hashedPassword,
+    role: user,
   });
 
   return res.status(201).json({
