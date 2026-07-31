@@ -3,7 +3,7 @@ import Navbar from "../components/layout/Navbar";
 import Sidebar from "../components/layout/Sidebar";
 const AppLayout = () => {
   return (
-    <div>
+    <div className="h-screen overflow-hidden font-sans">
       <Navbar />
       <Sidebar />
       <Outlet />

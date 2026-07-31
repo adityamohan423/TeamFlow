@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {
-  PanelRightOpen,
-  PanelRightClose,
-  LayoutGrid,
-  Bell,
-  CircleQuestionMark,
-  Settings,
-} from "lucide-react";
+
 import { IoGrid } from "react-icons/io5";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import { LuPanelRightOpen, LuPanelLeftOpen } from "react-icons/lu";
@@ -43,8 +36,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="h-16 border-b border-[#ccc9c9db] flex items-center justify-between px-4">
-      <div id="nav_first" className="flex gap-3 overflow-hidden items-center">
+    <div className="h-16 border-b border-[#ccc9c9db] flex items-center justify-between px-4 font-sans">
+      <div id="nav_first" className="flex gap-3 items-center">
         <div className="cursor-pointer hover:bg-gray-200 p-0.5 rounded-md">
           {sidebarDisplay ? (
             <LuPanelRightOpen
@@ -65,14 +58,23 @@ const Navbar = () => {
           />
         </div>
         <div>
-          <img src="/teamflow.png" alt="" className="w-30 ml-8" />
+          <img
+            src="/teamflowLogo.png"
+            alt=""
+            className="w-10 sm:hidden cursor-pointer"
+          />
+          <img
+            src="/teamflow.png"
+            alt=""
+            className="hidden sm:block sm:w-20 md:w-30 sm:ml-2 md:ml-4 lg:ml-6 cursor-pointer"
+          />
         </div>
       </div>
 
       <div id="nav_middle">
         <div className="flex gap-2 justify-center">
-          <Button onClick={handleCreateClick} name={"+ Create"} />
-          <div className="w-50 md:w-100">
+          <Button onClick={handleCreateClick} name={"Create"} />
+          <div className="hidden sm:block sm:w-50 md:w-60 lg:w-100 ">
             <Searchbar searchText={searchText} setSearchText={setSearchText} />
           </div>
         </div>

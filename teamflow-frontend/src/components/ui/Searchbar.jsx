@@ -3,7 +3,7 @@ import { IoSearch } from "react-icons/io5";
 
 const Searchbar = ({ searchText, setSearchText }) => {
   return (
-    <div className="flex gap-1 items-center w-full h-full border p-1 rounded-lg border-[#ccc9c9e4] shadow">
+    <div className="flex gap-1 items-center w-full h-full border p-1 rounded-lg border-[#ccc9c9e4] shadow hover:shadow-gray-400 hover:transition duration-300">
       <IoSearch className=" left-3 text-gray-400 text-lg pointer-events-none" />
       <input
         type="text"
