@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import AppLayout from "../layouts/AppLayout.jsx";
 import Dashboard from "../pages/Dashboard.jsx";
 import TeamFlowLogin from "../pages/TeamFlowLogin.jsx";
+import TeamFlowSignUp from "../pages/TeamFlowSignUp.jsx";
 
 const AppRoutes = () => {
   return (
@@ -11,6 +12,7 @@ const AppRoutes = () => {
         <Route index element={<Dashboard />}></Route>
       </Route>
       <Route path="/login" element={<TeamFlowLogin />} />
+      <Route path="/signup" element={<TeamFlowSignUp />} />
     </Routes>
   );
 };

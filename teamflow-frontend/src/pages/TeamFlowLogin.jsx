@@ -1,9 +1,36 @@
 import React, { useState } from "react";
 import LoginPageRightSection from "../components/ui/LoginPageRightSection";
+import axios from "axios";
 
 const TeamFlowLogin = () => {
-  const [loginCreds, setLoginCreds] = useState({});
-  const loginHandler = async () => {};
+  const [loginCreds, setLoginCreds] = useState({ email: "", password: "" });
+
+  const loginHandler = async (e) => {
+    e.preventDefault();
+    if (!loginCreds.email || !loginCreds.password) {
+      console.log("provide email or password !");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "https://teamflow-1tzb.onrender.com/login",
+        {
+          email: loginCreds.email,
+          password: loginCreds.password,
+        },
+      );
+
+      console.log("Success:", response.data);
+    } catch (error) {
+      console.error("Failed to send string:", error.message);
+    }
+  };
+
+  const keyHandler = async (e) => {
+    if (e.key == "Enter") return await loginHandler(e);
+  };
+
   return (
     <div className="flex min-h-screen w-full font-sans text-gray-800">
       {/*Login Form (Left-Section) */}
@@ -32,6 +59,10 @@ const TeamFlowLogin = () => {
               <input
                 type="email"
                 id="email"
+                value={loginCreds.email}
+                onChange={(e) =>
+                  setLoginCreds({ ...loginCreds, email: e.target.value })
+                }
                 placeholder="aditya34@gmail.com"
                 className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
                 required
@@ -49,6 +80,11 @@ const TeamFlowLogin = () => {
               <input
                 type="password"
                 id="password"
+                value={loginCreds.password}
+                onKeyDown={(e) => keyHandler(e)}
+                onChange={(e) =>
+                  setLoginCreds({ ...loginCreds, password: e.target.value })
+                }
                 placeholder="Enter password"
                 className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder-gray-400 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
                 required
@@ -86,6 +122,7 @@ const TeamFlowLogin = () => {
             <div className="pt-2">
               <button
                 type="submit"
+                onSubmit={(e) => loginHandler(e)}
                 className="flex w-full justify-center rounded-md bg-[#0052cc] px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#0043a6] focus:outline-none focus:ring-2 focus:ring-[#0052cc] focus:ring-offset-2"
               >
                 Sign in
