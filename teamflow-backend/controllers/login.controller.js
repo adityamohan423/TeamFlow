@@ -30,11 +30,18 @@ const userLogin = async (req, res) => {
   }
 
   const token = generateJWT(userExist._id);
+  const cookieOptions = {
+    httpOnly: true, //JavaScript cannot see this cookie.
+    maxAge: 24 * 60 * 60 * 1000, //1 day in milliseconds
 
-  res.status(200).json({
+    //Cross-Origin
+    secure: true,
+    sameSite: "none",
+  };
+
+  res.status(200).cookie("teamflow_token", token, cookieOptions).json({
     success: true,
     message: "Login successfull !",
-    token: token,
   });
 };
 
